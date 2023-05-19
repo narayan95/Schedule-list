@@ -1,5 +1,6 @@
 const express= require('express');
 const bodyParser= require('body-parser');
+const date= require(__dirname+"/date.js");
 const app=express();
 const port= 3000;
 /* `app.set('view engine','ejs');` sets the view engine for the application to EJS (Embedded
@@ -15,15 +16,7 @@ can be accessed by the client without any additional routing or middleware. */
 app.use(express.static('public'));
 app.get("/",(req,res)=>
 {
-    var today= new Date();
-var options={
-weekday: "long",
-day: "numeric",
-month: "long"
-
-};
-
-var day= today.toLocaleDateString("en-US",options);
+let day= date.getDate();
 
     res.render("list",{listTitle: day, newListItems: items});
     // res.write("yah weekend");
